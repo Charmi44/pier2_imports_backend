@@ -211,7 +211,7 @@ For real deployment:
 
 ---
 
-## 📬 Questions from Assessment (Answered)
+## 📬 Questions from Assessment 
 
 - **How would you store the address data to accommodate these requirements?** 
 Create a single, reusable addresses table.
@@ -255,6 +255,41 @@ Each item in a single order to be shipped to a different address.
 Portions of the sample data generation, testing code setup, and docstring were accelerated using LLM-powered tools. All core business logic, API integration, and database interactions were manually implemented and validated to ensure correctness and alignment with the assignment requirements
 
 ---
+
+🔮 Future Enhancements
+## Authentication & Authorization
+
+Integrating OAuth2 or JWT-based authentication for secure API access.
+
+Introduce role-based access control (RBAC) for admin vs. customer-level endpoints.
+
+## Pagination & Filtering
+
+Add pagination to endpoints like /customer/{email_or_phone}/orders to efficiently handle large order histories.
+
+Include flexible filters (e.g., by date, store, product category) across analytics APIs.
+
+
+## Database Normalization & Indexing
+
+Normalize frequently queried fields (e.g., zip codes, cities) and ensure optimal indexing to boost query performance.
+
+
+## CI/CD & Test Coverage
+
+Adding GitHub Actions for automated tests, and deployment.
+
+Improve test coverage with property-based and integration testing using tools like pytest + httpx. 
+
+##  Rate Limiting & Monitoring
+
+Implementing rate limiting (e.g., with FastAPI middleware) to protect from abuse.
+
+Add logging and monitoring (e.g., Prometheus/ Grafana) for production readiness.
+
+##  Asynchronous DB Access
+
+Migrate to async SQLAlchemy or Tortoise ORM for higher concurrency with async endpoints.
 
 
 Please feel free to raise an issue or pull request on GitHub.
