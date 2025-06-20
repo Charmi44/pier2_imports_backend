@@ -9,7 +9,7 @@ from app.database import get_db  # Dependency for DB session
 # Create all tables if they do not exist
 models.Base.metadata.create_all(bind=database.engine)
 
-# ✅ Auto-load sample data if DB is empty
+# Auto-load sample data if DB is empty
 with Session(bind=database.engine) as session:
     if not session.query(models.Customer).first():
         try:
@@ -19,10 +19,10 @@ with Session(bind=database.engine) as session:
         except Exception as e:
             print("❌ Error while auto-loading data:", e)
 
-# ✅ FastAPI App Initialization
+# FastAPI App Initialization
 app = FastAPI(title="Pier 2 Imports Backend API")
 
-# ✅ Enable CORS (for local web frontend or third-party tools like Postman)
+# Enable CORS (for local web frontend or third-party tools like Postman)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -31,14 +31,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ✅ Health Check Endpoint
+# Health Check Endpoint
 @app.get("/health")
 def health_check():
     """Simple health check to verify backend is running."""
     return {"status": "Backend is running"}
 
 
-# ✅ Get complete order history for a customer
+# Get complete order history for a customer
 @app.get("/customer/{email_or_phone}/orders")
 def get_order_history(email_or_phone: str, db: Session = Depends(get_db)):
     """
@@ -47,7 +47,7 @@ def get_order_history(email_or_phone: str, db: Session = Depends(get_db)):
     return crud.get_order_history(email_or_phone, db)
 
 
-# ✅ Analytics: Count of orders by billing zip code
+# Analytics: Count of orders by billing zip code
 @app.get("/analytics/orders_by_billing_zip")
 def orders_by_billing_zip(
     order: str = Query("desc", enum=["asc", "desc"]),
@@ -60,7 +60,7 @@ def orders_by_billing_zip(
     return crud.get_orders_grouped_by_billing_zip(db, order=order)
 
 
-# ✅ Analytics: Count of orders by shipping zip code
+# Analytics: Count of orders by shipping zip code
 @app.get("/analytics/orders_by_shipping_zip")
 def orders_by_shipping_zip(
     order: str = Query("desc", enum=["asc", "desc"]),
@@ -73,7 +73,7 @@ def orders_by_shipping_zip(
     return crud.get_orders_grouped_by_shipping_zip(db, order=order)
 
 
-# ✅ Analytics: Most common hour for in-store purchases
+#  Analytics: Most common hour for in-store purchases
 @app.get("/analytics/in_store_peak_hour")
 def in_store_peak_hour(db: Session = Depends(get_db)):
     """
@@ -83,7 +83,7 @@ def in_store_peak_hour(db: Session = Depends(get_db)):
     return crud.get_peak_instore_purchase_hour(db)
 
 
-# ✅ Analytics: Top 5 customers with in-store purchases
+# Analytics: Top 5 customers with in-store purchases
 @app.get("/analytics/top_instore_customers")
 def top_instore_customer(
     start_date: Optional[str] = Query(None, description="Start date in MM-DD-YYYY format"),
@@ -97,7 +97,7 @@ def top_instore_customer(
     return crud.get_top_instore_customer(db, start_date=start_date, end_date=end_date)
 
 
-# ✅ Development: Load and return sample data (for testing/demo)
+# Development: Load and return sample data (for testing/demo)
 @app.get("/sample_data")
 def get_sample_data():
     """
