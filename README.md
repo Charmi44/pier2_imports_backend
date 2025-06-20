@@ -33,7 +33,7 @@ The API is self-contained using a **SQLite database**, with **sample data auto-l
 Clone the repository and set up the environment:
 
 ```bash
-git clone https://github.com/Charmi44/pier2_backend.git
+git clone https://github.com/Charmi44/pier2_imports_backend.git
 cd pier2_backend
 python -m venv venv
 source venv/bin/activate  # or venv\Scripts\activate on Windows
