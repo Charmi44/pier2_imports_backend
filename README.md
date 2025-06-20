@@ -44,10 +44,12 @@ pip install -r requirements.txt
 
 ```bash
 bash run.sh
-```
 
 Access the API docs at:  
 [http://localhost:8000/docs]
+```
+
+
 ---
 
 ## 📊 API Endpoints (With Examples)
